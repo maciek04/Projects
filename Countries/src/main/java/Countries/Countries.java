@@ -17,12 +17,12 @@ public class Countries {
 	String[][] countries = new String [100][2];
 	String[][] set = new String[5][2];
 	int size = 0;
-	String correctCountry = null;
-	String correctCapital = null;
-	List<String> opts = null;
+	public String correctCountry = null;
+	public String correctCapital = null;
+	public List<String> opts = null;
 	
 	
-	Countries(Continents continent){
+	public Countries(Continents continent){
 		String splitted[] = null;
 		
 		path = folder + continent.toString() + ext;
@@ -48,14 +48,16 @@ public class Countries {
 					this.size = x - 1;
 					break;
 				}
+			
 			}
+			createSet();
 		}catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public List<String> createSet(){
+	public void createSet(){
 		int v1 = 0;
 		int v2 = 0;
 		int v3 = 0;
@@ -108,13 +110,11 @@ public class Countries {
 //
 //		System.out.println(opts);
 //		
-		return opts;
 //			System.out.println(countries[i][0] + " : " + countries[i][1]);	
 		
 	}
 	
 	public String getCorrectCountry(){
-		System.out.println(correctCapital);
 		return this.correctCountry;
 	}
 	
@@ -122,5 +122,8 @@ public class Countries {
 		return this.correctCapital;
 	}
 	
+	public String getQuestion(){
+		return "Podaj stolicê kraju: " + this.correctCountry;
+	}
 }
 
