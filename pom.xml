@@ -9,5 +9,6 @@
 my projects</description>
   <modules>
   	<module>Countries</module>
+  	<module>ImageViewer</module>
   </modules>
 </project>
