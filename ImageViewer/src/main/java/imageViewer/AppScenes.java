@@ -28,7 +28,8 @@ public class AppScenes {
 	ImageView imv;
 	final ImagePos imagePos = new ImagePos();
 	final FileChooser fileChooser = new FileChooser();
-
+	
+	
 	AppScenes(Stage stage) {
 		this.stage = stage;
 		imagePos.setPos(0);
@@ -95,6 +96,7 @@ public class AppScenes {
 		prev.setGraphic(imv);
 		prev.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
+				imagePos.setAutoSliderRun(false);
 				if (imagePos.getPos() == 0) {
 					imagePos.setPos(imagePos.getMaxpos());
 				} else {
@@ -110,12 +112,47 @@ public class AppScenes {
 		next.setGraphic(imv);
 		next.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
+				imagePos.setAutoSliderRun(false);
 				if (imagePos.getPos() == imagePos.getMaxpos()) {
 					imagePos.setPos(0);
 				} else {
 					imagePos.setPos(imagePos.getPos() + 1);
 				}
 				stage.setScene(showFile(list));
+
+			}
+		});
+		Button autoSlide = new Button("AutoSlide");
+		autoSlide.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				imagePos.setAutoSliderRun(true);
+				
+				Runnable autoSlider = new Runnable(){
+					public void run(){
+			        while(imagePos.isAutoSliderRun()){
+			        	if (imagePos.getPos() == imagePos.getMaxpos()) {
+							imagePos.setPos(0);
+						} else {
+							imagePos.setPos(imagePos.getPos() + 1);
+						}
+			        	System.out.println(imagePos.getPos());
+			        	try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+//
+						stage.setScene(showFile(list));
+			        }
+			     }
+			   };
+
+			   Thread thread = new Thread(autoSlider);
+			   thread.start();
+//				while(imagePos.isAutoSliderRun()){
+//					
+//				}
 
 			}
 		});
@@ -127,6 +164,7 @@ public class AppScenes {
 		exit.setOnAction(new EventHandler<ActionEvent>() {
 
 			public void handle(ActionEvent event) {
+				imagePos.setAutoSliderRun(false);
 				System.exit(0);
 			}
 		});
@@ -136,6 +174,7 @@ public class AppScenes {
 		if (list != null) {
 			menuList.getChildren().add(chooseFile);
 		}
+		menuList.getChildren().add(autoSlide);
 		menuList.getChildren().add(exit);
 		// menuList.spacingProperty(width/4);
 		menuList.setAlignment(Pos.CENTER);
