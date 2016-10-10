@@ -10,5 +10,7 @@ my projects</description>
   <modules>
   	<module>Countries</module>
   	<module>ImageViewer</module>
+  	<module>Basics</module>
+  	<module>Basic</module>
   </modules>
 </project>

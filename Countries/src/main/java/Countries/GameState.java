@@ -1,6 +1,5 @@
 package Countries;
 
 public enum GameState {
-
-	RUN, WAIT
+	START, PLAY, END;
 }
