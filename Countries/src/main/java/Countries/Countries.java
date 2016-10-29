@@ -1,8 +1,5 @@
 package Countries;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,9 +8,6 @@ import java.util.Scanner;
 
 public class Countries {
 
-	String folder = "src//main//resources//";
-	String ext = ".csv";
-	String path = "";
 	String[][] countries = new String[100][2];
 	String[][] set = new String[5][2];
 	int size = 0;
@@ -27,40 +21,30 @@ public class Countries {
 		String splitted[] = null;
 		this.used = used;
 		this.score = score;
-		
-		path = folder + continent.toString() + ext;
-		File file = new File(path);
-		FileReader reader;
-		try {
-			reader = new FileReader(file);
 
-			Scanner odczyt = new Scanner(reader);
+		ClassLoader classLoader = getClass().getClassLoader();
 
-			int i = 0;
-			while (odczyt.hasNext()) {
+		Scanner odczyt = new Scanner(classLoader.getResourceAsStream("EUROPE.csv"));
 
-				// countries[i][0] = 1 ;
-				splitted = odczyt.nextLine().split(";");
+		int i = 0;
+		while (odczyt.hasNext()) {
 
-				countries[i][0] = splitted[0].toString();
-				countries[i][1] = splitted[1].toString();
-				i++;
-			}
-			for (int x = 0; x < 100; x++) {
-				if (countries[x][0] == null) {
-					this.size = x - 1;
-					break;
-				}
+			splitted = odczyt.nextLine().split(";");
 
-			}
-			createSet();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			countries[i][0] = splitted[0].toString();
+			countries[i][1] = splitted[1].toString();
+			i++;
 		}
-	}
+		odczyt.close();
+		for (int x = 0; x < 100; x++) {
+			if (countries[x][0] == null) {
+				this.size = x - 1;
+				break;
+			}
 
-	
+		}
+		createSet();
+	}
 
 	public void createSet() {
 		int v1 = 0;
@@ -71,20 +55,20 @@ public class Countries {
 
 		Random rand = new Random();
 		boolean r = true;
-		while(r) {
+		while (r) {
 
-		v1 = rand.nextInt(this.size);
-		if(!used.contains(v1) && used.size() < this.size){
-		//if(!used.contains(v1) && used.size() < 2){
-			used.add(v1);
-			r = false;
-		}else if(used.size() == this.size){
-		//}else if(used.size() == 2){	
-			score.setGameState(GameState.END);
-			System.out.println("Koniec gry");
-			
-			r = false;
-		}
+			v1 = rand.nextInt(this.size);
+			// if(!used.contains(v1) && used.size() < this.size){
+			if (!used.contains(v1) && used.size() < 20) {
+				used.add(v1);
+				r = false;
+				// }else if(used.size() == this.size){
+			} else if (used.size() == 20) {
+				score.setGameState(GameState.END);
+				System.out.println("Koniec gry");
+
+				r = false;
+			}
 		}
 		r = true;
 		while (r) {

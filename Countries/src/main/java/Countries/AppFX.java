@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class AppFX extends Application {
-	
+
 	private Stage stage;
 	Score score = new Score();
 
@@ -19,7 +19,7 @@ public class AppFX extends Application {
 		stage.show();
 		System.out.println(score.toString());
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
