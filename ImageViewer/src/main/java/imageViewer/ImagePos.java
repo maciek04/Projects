@@ -4,9 +4,9 @@ public class ImagePos {
 	private int pos;
 	private int maxpos;
 	private boolean autoSliderRun;
-	
-	ImagePos(){
-		
+
+	ImagePos() {
+
 	}
 
 	public int getPos() {

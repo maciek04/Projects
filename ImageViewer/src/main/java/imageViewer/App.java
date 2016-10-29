@@ -11,7 +11,6 @@ public class App extends Application {
 	@Override
 	public void start(Stage stage) throws IOException {
 
-		
 		AppScenes appScene = new AppScenes(stage);
 		Scene scene = appScene.showFile(null);
 		stage.setScene(scene);
