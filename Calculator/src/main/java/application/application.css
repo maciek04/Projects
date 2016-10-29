@@ -1,0 +1,33 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+Button{
+	-fx-min-height: 50px;
+	-fx-min-width: 50px;
+	-fx-border-color: grey;
+	-fx-background-color: beige  ;
+	-fx-background-radius: 30;
+	-fx-border-radius: 35;
+	-fx-font-size: x-large;
+	
+	
+}
+Button:hover{
+	-fx-background-color: bisque ;
+}
+
+#next {
+	-fx-min-width: 200px;
+	-fx-min-height: 50px;
+	-fx-background-color: beige;
+	-fx-border-color: grey;
+	-fx-border-radius: 15;
+	-fx-font-size: x-large;
+}
+#task {
+	-fx-min-width: 200px;
+	-fx-min-height: 50px;
+	-fx-background-color: rgb(236,236,236);
+	-fx-border-color: grey;
+	-fx-border-radius: 15;
+	-fx-font-size: large;
+}

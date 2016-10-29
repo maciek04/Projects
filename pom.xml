@@ -12,5 +12,6 @@ my projects</description>
   	<module>ImageViewer</module>
   	<module>Basics</module>
   	<module>Basic</module>
+  	<module>Calculator</module>
   </modules>
 </project>
